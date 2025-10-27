@@ -1,0 +1,19 @@
+{
+  "name": "1-intro-to-ai",
+  "version": "1.0.0",
+  "description": "- GPT is a generative pre-trained transformer model. - GPT is a transformer-based language model trained on vast amounts of text data. - GPT is trained on a large corpus of text data, and it can generate text based on the input text.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node embedding.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "js-tiktoken": "^1.0.21",
+    "openai": "^6.7.0"
+  }
+}
