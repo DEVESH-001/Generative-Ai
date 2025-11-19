@@ -11,7 +11,7 @@ This project is built for developers who want to explore real-world AI implement
 
 Click Fork on GitHub and clone your copy:
 
-git clone https://github.com/<your-username>/Generative-AI.git
+git clone https://github.com/DEVESH-001/Generative-Ai.git
 cd Generative-AI
 
 
