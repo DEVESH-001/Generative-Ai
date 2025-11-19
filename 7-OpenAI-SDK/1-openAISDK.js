@@ -5,6 +5,7 @@ import "dotenv/config";
 
 const cookingAgent = new Agent({
   name: "Cooking Assistant",
+  model: "gpt-4.1-mini",
   instructions: `
     You are a helpful cooking assistant. Provide recipes and cooking tips based on user requests. Provide clear and concise instructions. If users ask for specific dietary needs, accommodate them in your responses. If user asks anything unrelated to cooking, politely inform them that you can only assist with cooking-related queries.
     `,
