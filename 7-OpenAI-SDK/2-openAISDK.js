@@ -26,6 +26,7 @@ const getMenuTool = tool({
   name: "get_menu",
   description: "Fetches and returns the menu items",
   //   parameters: z.object({ restaurant: z.string() }),
+  needsApproval: true, // This tool requires manual approval before execution (human in the loop)
   parameters: z.object({}),
   async execute() {
     return {
@@ -57,31 +58,34 @@ const cookingAgent = new Agent({
     `,
 });
 
-const codingAgent= new Agent({
-  name:"Coding Agent",
-  instructions:`
+const codingAgent = new Agent({
+  name: "Coding Agent",
+  instructions: `
   You are an expert coding assistant particularly in Typescript.
   `,
   //making cookingAgent the tool of codingAgent, useful for transfering the query to cookingAgent. I guess in real-life we will never make an agent a tool of another agent, beacuse we have to focus on one task at a time. [https://openai.github.io/openai-agents-js/guides/tools/#3-agents-as-tools]
-  tools:[cookingAgent]
-})
+  tools: [cookingAgent],
+});
 
 //https://openai.github.io/openai-agents-js/guides/handoffs/
-const gateWay =  Agent.create({
-  name:"Gateway Agent",
+const gateWay = Agent.create({
+  name: "Gateway Agent",
   instructions: `
   You are a gateway agent. You will be provided with a query and you will have to determine which agent to use based on the query.
   `,
-  handoffs:[cookingAgent,codingAgent] // handoffs are the agents that can be used to handle the query
-})
+  handoffs: [cookingAgent, codingAgent], // Handoffs let an agent delegate part of a conversation to another agent. This is useful when different agents specialise in specific areas.
+});
 
 async function chatWithAgent(query) {
   const result = await run(gateWay, query); //run is provided by @openai/agents
   console.log(`History`, result.history); //result.history contains the full conversation history
-
-  console.log(result.finalOutput);
+  console.log(`Final Output`, result.finalOutput);
+  console.log(`Tools Called`, result.toolsCalled);
 }
 //chatWithAgent("Can you suggest a recipe for a eggs?");
-chatWithAgent(
-  "Depending on the current time in India, suggest me a breakfast recipe. Also what all items are available in menu?"
-); // here we are calling llm and tools[time&weather]
+// here we are calling llm and tools[time&weather]
+// chatWithAgent(
+//   "Depending on the current time in India, suggest me a breakfast recipe. Also what all items are available in menu?",
+// ); 
+
+chatWithAgent("I want to cook a cake, what ingredients do I need?");
