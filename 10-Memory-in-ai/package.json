@@ -1,0 +1,18 @@
+{
+  "name": "10-memory-in-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mem0ai": "^3.0.3",
+    "openai": "^6.37.0"
+  }
+}
