@@ -1,6 +1,7 @@
 {
   "name": "voice-agent",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,7 +13,7 @@
     "@openai/agents": "^0.0.17",
     "@openai/agents-realtime": "^0.0.17",
     "axios": "^1.13.2",
-    "next": "16.0.3",
+    "next": "^15.0.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "zod": "^3.25.76"
